@@ -15,3 +15,9 @@ mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/the-social-api
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+
+mongoose.set('debug', true);
+
+app.listen(PORT, () =>
+    console.log(`Server initialized on localhost: ${PORT}`)
+);
