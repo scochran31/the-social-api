@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGOOSE_URI || 'mongodb://localhost/the-social-api
 
 mongoose.set('debug', true);
 
+app.use(require('./routes'));
 app.listen(PORT, () =>
     console.log(`Server initialized on localhost: ${PORT}`)
 );
