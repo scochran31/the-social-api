@@ -3,12 +3,11 @@ const dateFormat = require('../utils/dateFormat');
 
 const reactionSchema = new Schema(
     {
-        reactionId: [
-            {
-                type: Schema.Types.ObjectId(),
-                default: () => new Types.ObjectId()
-            }
-        ],
+        reactionId:
+        {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
+        },
         reactionBody: {
             type: String,
             required: "Let's hear that reaction!",
@@ -21,10 +20,9 @@ const reactionSchema = new Schema(
         dateCreated: {
             type: Date,
             default: Date.new,
-            get: dateCreated => dateFormat(dateCreatedVal)
-        }
-    }
-);
+            get: dateCreatedVal => dateFormat(dateCreatedVal)
+        },
+    });
 
 const thoughtSchema = new Schema(
     {
@@ -37,10 +35,10 @@ const thoughtSchema = new Schema(
         dateCreated: {
             type: Date,
             default: Date.new,
-            get: dateCreated => dateFormat(dateCreatedVal)
+            get: dateCreatedVal => dateFormat(dateCreatedVal)
         },
         username: {
-            type: Schema.Types.ObjectId(),
+            type: Schema.Types.ObjectId,
             required: true,
             ref: 'User'
         },
@@ -49,9 +47,8 @@ const thoughtSchema = new Schema(
     {
         toJSON: {
             getters: true,
-        }
-    }
-);
+        },
+    });
 
 thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
