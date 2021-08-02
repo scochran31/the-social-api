@@ -56,28 +56,6 @@ const thoughtControl = {
             .catch(err => res.json(err));
     },
 
-    //add reaction
-    newReaction({ params, body }, res) {
-        Thoughts.findOneAndUpdate(
-            { _id: params.thoughtId },
-            { $push: { reactions: { reactionId: params.reactionId } } },
-            { new: true }
-        )
-            .then(dbThoughtData => res.json(dbThoughtData))
-            .catch(err => res.json(err));
-    },
-
-    //remove a reaction
-    deleteReaction({ params }, res) {
-        Thoughts.findOneAndUpdate(
-            { _id: params.thoughtId },
-            { $pull: { reactions: { reactionId: params.reactionId } } },
-            { new: true }
-        )
-            .then(dbThoughtData => res.json(dbThoughtData))
-            .catch(err => res.json(err));
-    },
-
     //update a Thoughts
     updateThought({ params, body }, res) {
         Thoughts.findOneAndUpdate(
@@ -103,6 +81,28 @@ const thoughtControl = {
                 }
                 res.json(dbThoughtData);
             })
+            .catch(err => res.json(err));
+    },
+
+    //add reaction
+    newReaction({ params, body }, res) {
+        Thoughts.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
+        )
+            .then(dbThoughtData => res.json(dbThoughtData))
+            .catch(err => res.json(err));
+    },
+
+    //remove a reaction
+    deleteReaction({ params }, res) {
+        Thoughts.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
+        )
+            .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => res.json(err));
     }
 };
